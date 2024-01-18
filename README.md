@@ -11,7 +11,7 @@
  1. **ffmpeg** (for converting **.mp3** to **.sbc** file)
  2. **DualPodShockNet** (The system that allows communication with *Dualshock 4*)
 
-*Thanks [Ryochan7](https://github.com/Ryochan7) for the DualPodShockNet.*
+*Thanks [Ryochan7](https://github.com/Ryochan7) for the [DualPodShockNet](https://gitlab.com/ryochan7/ds4-audio-test-windows).*
 
 If you would like to contribute to the project, 
 Discord **semihnoir**
