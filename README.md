@@ -16,6 +16,12 @@
 If you would like to contribute to the project, 
 Discord **semihnoir**
 
+
+
+[Download from here](https://github.com/semihnoir/ds4audio-gui/releases/tag/beta)
+
+
+
 *Screenshot from app*
 
 
