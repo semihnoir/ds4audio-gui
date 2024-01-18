@@ -1,0 +1,1 @@
+ffmpeg -i dosya.mp3 -ac 2 -ar 32k -c:a sbc -b:a 224k dosya.sbc
