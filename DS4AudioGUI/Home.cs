@@ -40,6 +40,8 @@ namespace DS4AudioGUI
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
+            volume = Convert.ToByte(trackBarVolume.Value * 10);
+
             if (fileSelected)
             {
                 ClearTempFiles();
@@ -86,7 +88,7 @@ namespace DS4AudioGUI
 
             ffmpeg.Start();
 
-            // ffmpeg işlemi tamamlandığında temp dosyaları temizle
+            // clear temp files
             ffmpeg.WaitForExit();
             StartDs4SysProcess(cancellationTokenSource.Token);
         }
@@ -112,7 +114,7 @@ namespace DS4AudioGUI
 
             ffmpeg.Start();
 
-            // ffmpeg işlemi tamamlandığında temp dosyaları temizle
+            // clear temp files
             ffmpeg.WaitForExit();
             StartDs4Process(cancellationTokenSource.Token);
         }
@@ -169,18 +171,28 @@ namespace DS4AudioGUI
             if (isProcessStarted)
             {
                 ds4.Kill();
+                isProcessStarted= false;
             }
         }
 
         private void trackBarVolume_ValueChanged(object sender, EventArgs e)
         {
-            volume = Convert.ToByte(trackBarVolume.Value * 10);
+            if(trackBarVolume.Value == 0)
+            {
+                volume = 0x00;
+            }
+
+            else
+            {
+                volume = Convert.ToByte(trackBarVolume.Value * 10);
+            }
+            
             labelVolume.Text = "Volume: " + (trackBarVolume.Value * 10) + "%";
         }
 
         private void ClearTempFiles()
         {
-            // Temp dosyaları temizle
+            // clear temp files
             string[] files = Directory.GetFiles(".", "output_*.sbc");
             foreach (string file in files)
             {
@@ -206,11 +218,28 @@ namespace DS4AudioGUI
 
             cancellationTokenSource = new CancellationTokenSource();
 
-            // Başlamadan önce temp dosyaları temizle
+            // clear temp files
             ClearTempFiles();
 
-            // Ses kaydını belirli aralıklarla başlatan döngü
             ThreadPool.QueueUserWorkItem(RecordAudio, cancellationTokenSource.Token);
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            labelVolume.Text = "Volume: " + (trackBarVolume.Value * 10) + "%";
+        }
+
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isProcessStarted)
+            {
+                ds4.Kill();
+            }
+
+            if (File.Exists("output.sbc"))
+            {
+                File.Delete("output.sbc");
+            }
         }
     }
 }

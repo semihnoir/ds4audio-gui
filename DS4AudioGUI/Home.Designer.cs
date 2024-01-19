@@ -110,9 +110,9 @@
             this.labelVolume.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelVolume.Location = new System.Drawing.Point(18, 170);
             this.labelVolume.Name = "labelVolume";
-            this.labelVolume.Size = new System.Drawing.Size(120, 25);
+            this.labelVolume.Size = new System.Drawing.Size(110, 25);
             this.labelVolume.TabIndex = 6;
-            this.labelVolume.Text = "Volume: 40%";
+            this.labelVolume.Text = "Volume: 0%";
             // 
             // buttonStop
             // 
@@ -133,7 +133,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(415, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(415, 31);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "Tool";
             // 
@@ -144,7 +144,7 @@
             this.toolStripAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAbout.Image")));
             this.toolStripAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripAbout.Name = "toolStripAbout";
-            this.toolStripAbout.Size = new System.Drawing.Size(55, 24);
+            this.toolStripAbout.Size = new System.Drawing.Size(55, 28);
             this.toolStripAbout.Text = "About";
             this.toolStripAbout.Click += new System.EventHandler(this.toolStripAbout_Click);
             // 
@@ -180,6 +180,8 @@
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DS4 Audio GUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
+            this.Load += new System.EventHandler(this.Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
